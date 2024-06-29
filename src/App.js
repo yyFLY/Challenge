@@ -89,14 +89,10 @@ function App() {
   const [userDetail, setUserDetail] = useState(null);
   const [userTasks, setUserTasks] = useState(null);
   const [userTaskProgress, setUserTaskProgress] = useState(null);
-<<<<<<< HEAD
-  
-=======
 
   if (ifLogin) {
     return <Login></Login>
   }
->>>>>>> 9463ab474e8ad5989086fa0ee2a99da536549eb8
   const processTaskDate = (o)=>{
     o.startDate = new Date(o.startDate)
     o.endDate = new Date(o.endDate)
@@ -166,12 +162,6 @@ function App() {
     }
   };
    
-   
-<<<<<<< HEAD
-  if (ifLogin) {
-    return <Login></Login>
-  }
-  else{
     return (
       <div className="App">
             <Routes>
@@ -189,25 +179,7 @@ function App() {
       </div>
     )
 };
-=======
 
-  return (
-    <div className="App">
-          <Routes>
-              <Route path="start" element={<StartPage />} />
-              <Route path="login" element={<Login />} />
-              <Route path="Welcome" element={<Welcome />} />
-              <Route path="/" element={<Layout />}>
-              <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
-              <Route path="media" element={<Media />} />
-              <Route path="challenge" element={<Challenge />} />
-              <Route path="*" element={<NoMatch />} />
-            </Route>
-          </Routes> 
-    </div>
-  )
->>>>>>> 9463ab474e8ad5989086fa0ee2a99da536549eb8
-}
 
   
 
