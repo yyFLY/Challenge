@@ -7,7 +7,7 @@ import { Image } from "mui-image";
 
 export default function Achieve(props) {
   if(!props.data) return <></>
-  const photoURL = props?.data?.slice(0, 3).map((o)=>(`http://127.0.0.1:8080/api/resource/badge_${o.rank}.png`))
+  const photoURL = props?.data?.slice(0, 3).map((o)=>(`http://13.55.193.64:8080/api/resource/badge_${o.rank}.png`))
 
   return (
     <Box className={styles.achieve_container} >

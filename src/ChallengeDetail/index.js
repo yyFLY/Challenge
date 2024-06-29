@@ -28,7 +28,7 @@ const VisuallyHiddenInput = styled('input')({
 const BackgroundBox = styled(Box)(({ theme,imageUrl  }) => ({
   width: '100%',
   height: '240px',
-  backgroundImage: `url(http://127.0.0.1:8080/api/resource/${imageUrl})`,
+  backgroundImage: `url(http://13.55.193.64:8080/api/resource/${imageUrl})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   borderRadius:'14px'

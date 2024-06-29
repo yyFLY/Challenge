@@ -35,7 +35,7 @@ function App() {
 
   const fetchTaskList = async () => {
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/task/tasklist`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/task/tasklist`);
         response.data = response.data.map(o=>processTaskDate(o))
         setTaskList(response.data)
     } catch (error) {
@@ -45,7 +45,7 @@ function App() {
   const fetchTaskDetail = async (taskId) => {
     taskId = taskId || "667f7db5997a28d63916246a"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/details`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/task/${taskId}/details`);
         response.data = processTaskDate(response.data)
         setTaskDetail({
           taskId: processTaskDate(response.data)
@@ -57,7 +57,7 @@ function App() {
   const fetchTaskParticipants = async (taskId) => {
     taskId = taskId || "667f7db5997a28d63916246a"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/participants`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/task/${taskId}/participants`);
         setTaskParticipants(response.data)
     } catch (error) {
       console.log(error);
@@ -66,7 +66,7 @@ function App() {
   const fetchUserDetail = async () => {
     const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/details`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/user/${userId}/details`);
         setUserDetail(response.data)
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ function App() {
   const fetchUserTask = async () => {
     const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/tasks`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/user/${userId}/tasks`);
         response.data = response.data.map( (o)=>{
           o.taskId = processTaskDate(o.taskId)
           return o
@@ -89,7 +89,7 @@ function App() {
     taskId = taskId || "667f7db5997a28d63916246a"
     const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/progress?taskId=${taskId}`);
+        const response = await axios.get(`http://13.55.193.64:8080/api/user/${userId}/progress?taskId=${taskId}`);
         response.data.taskId = processTaskDate(response.data.taskId)
         setUserTaskProgress(response.data)
     } catch (error) {

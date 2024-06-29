@@ -22,7 +22,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 export default function ProgressCard(props) {
   if(!props.data) return <></>
-  const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.taskId.photo}`
+  const photoURL = `http://13.55.193.64:8080/api/resource/${props.data.taskId.photo}`
   const progress = props.data?.photos?.length || 0
 
   return (

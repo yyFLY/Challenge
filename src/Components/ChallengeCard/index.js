@@ -20,7 +20,7 @@ function randomUserPhotos(){
   const filenames = ["avatar_f1.png", "avatar_f2.png", "avatar_f3.png", "avatar_m1.png", "avatar_m2.png"]
   for (let i = 0; i < filenames?.length; i++) {
     if(Math.random() > 0.5){
-      rtv.push(`http://127.0.0.1:8080/api/resource/${filenames[i]}`)
+      rtv.push(`http://13.55.193.64:8080/api/resource/${filenames[i]}`)
     }
   }
   return rtv
@@ -28,7 +28,7 @@ function randomUserPhotos(){
 
 
 export default function Challenge(props) {
-  const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.photo}`
+  const photoURL = `http://13.55.193.64:8080/api/resource/${props.data.photo}`
   const duration = `${formatDate(props.data.startDate)} - ${formatDate(props.data.endDate)}`
 
   const navigation=useNavigate()
