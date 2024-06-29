@@ -1,0 +1,12 @@
+.contain {
+    padding-top: 90px;
+    height: 100vh;
+    background-color: #E6FBB0;
+    .title {
+        color: #3B3B3B;
+        font-size: 20px;
+        padding-bottom: 14px;
+        text-align: left;
+        font-weight: 700;
+    }
+}

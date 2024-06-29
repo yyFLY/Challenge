@@ -1,0 +1,36 @@
+.achieve_container {
+    padding-top: 20px;
+    .title {
+        color: #3B3B3B;
+        font-size: 20px;
+        padding-bottom: 14px;
+        text-align: left;
+        font-weight: 700;
+    }
+
+    .top_text {
+        background: #9FBC5A;
+        border-radius: 14px;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        overflow: hidden;
+        .t1 {
+
+            padding: 10px;
+            font-size: 14px;
+            line-height: 13px;
+            color: #FFFFFF;
+            padding-bottom: 5px;
+            text-align: left;
+        }
+        .t2 {
+
+            padding: 10px;
+            font-size: 11px;
+            line-height: 13px;
+            color: #FFFFFF;
+            padding-bottom: 5px;
+            text-align: left;
+            padding-bottom: 10px;
+        }
+    }
+}

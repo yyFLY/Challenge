@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../Components/Card'
-import "./index.css";
+
+import styles from './index.module.css';
 import Container from '@mui/material/Container';
 
 

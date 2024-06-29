@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import "./index.css";
+import styles from './index.module.css';
 import AddReactionOutlinedIcon from '@mui/icons-material/AddReactionOutlined';
 import girl from "../../Static/img/girl.png";
 import AppBar from '@mui/material/AppBar';
@@ -47,10 +47,10 @@ export default function Tab(props) {
             justifyContent="space-between"
             alignItems="center"
             spacing={2}
-        className='top'
+        className={styles.top}
           >
             <Avatar alt="Remy Sharp" src={girl} />
-            <h3 className='title'>
+            <h3 className={styles.title}>
                 Home
             </h3> 
             <AddReactionOutlinedIcon color="secondary"/>

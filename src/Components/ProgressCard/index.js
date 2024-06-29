@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, Box, Stack } from "@mui/material";
-import "./index.css";
+import styles from './index.module.css';
 import { Image } from "mui-image";
 import { styled } from "@mui/material/styles";
 import girl from "../../Static/img/girl.png";
@@ -22,21 +22,21 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 
 export default function ProgressCard(props) {
   return (
-    <Box className="progress_container">
-      <div class="box_container">
-        <div class="fixed">
+    <Box className={styles.progress_container}>
+      <div  className={styles.box_container}>
+        <div  className={styles.fixed}>
           <Image src={girl} alt="" width={40} height={40}></Image>
         </div>
-        <div class="flex-grow inner_container">
-            <div className="t1">Collecting Diverse Plants</div>
-            <div className="t2">Deluxe Plant Care Kit</div>
+        <div  className={styles.inner_container}>
+            <div className={styles.t1}>Collecting Diverse Plants</div>
+            <div className={styles.t2}>Deluxe Plant Care Kit</div>
             <Stack
               direction="row"
               justifyContent="space-between"
               alignItems="flex-start"
             >
-              <div className="t3">17 / 50 images</div>
-              <div className="t3">182 days left</div>
+              <div className={styles.t3}>17 / 50 images</div>
+              <div className={styles.t3}>182 days left</div>
             </Stack>
 
             <BorderLinearProgress
