@@ -28,13 +28,12 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard(props) {
-  console.log(props.data)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader

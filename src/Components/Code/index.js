@@ -15,11 +15,12 @@ const BackgroundBox = styled(Box)(({ theme }) => ({
 }));
 
 export default function Code(props) {
-
+  console.log(props);
+  const amount = props.userData.amount || 0.0
   return (<BackgroundBox>
     <div className={styles.t1}>
       <div className={styles.t2}>amount</div>
-      $15.20
+      ${amount}
     </div>
   </BackgroundBox>);
 }
