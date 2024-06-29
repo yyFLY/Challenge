@@ -17,11 +17,12 @@
         width: 50px; /* 固定宽度 */
     }
     .flex-grow {
-        flex-grow: 1; /* 右边撑满 */
 
      
     }
     .inner_container {
+
+        flex-grow: 1; /* 右边撑满 */
         .t1 {
             font-size: 14px;
             font-weight: 700;

@@ -1,10 +1,11 @@
 .challenge_container {
     background: #F8FCF3;
-    padding: 10px;
+    padding: 0 10px;
+    padding-bottom: 5px;
     .box_container {
         display: flex;
         flex-direction: row;
-        padding: 14px;
+        padding-top: 14px;
         border-radius: 12px;
         align-items: center;
     }
@@ -56,6 +57,7 @@
         font-size: 11px;
         text-align: left;
         color: #5F5F5F;
+        padding-top: 5px;
 
     }
 }

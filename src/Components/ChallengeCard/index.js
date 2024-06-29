@@ -2,7 +2,6 @@ import * as React from "react";
 import { Container, Box, Stack } from "@mui/material";
 import styles from './index.module.css';
 import { Image } from "mui-image";
-import { styled } from "@mui/material/styles";
 import girl from "../../Static/img/girl.png";
 
 
