@@ -16,8 +16,9 @@ const defaultTheme = createTheme({
       main: green[500],
     },
     secondary: {
-      main:"#3B3B3B"
-    }
+      main:"#9FBC5A",
+      contrastText:'#fff'
+    },
   
   },
 });

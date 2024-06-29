@@ -6,6 +6,7 @@ import ProgressCard from '../Components/ProgressCard';
 import Achieve from '../Components/Achieve';
 import Challenge from '../Components/Challenge';
 import Code from '../Components/Code';
+import Bar from '../Components/Bar'
 
 export default function SimpleBottomNavigation(props) {
   useEffect(()=> {
@@ -14,6 +15,8 @@ export default function SimpleBottomNavigation(props) {
   }, [])
 
   return (
+    <>
+    <Bar></Bar>
     <Container className={styles.contain}>
       <Box className={styles.title}>Challenge Progress</Box>
       <ProgressCard />
@@ -21,5 +24,6 @@ export default function SimpleBottomNavigation(props) {
       <Code userData={props.userData}/>
       <Challenge taskData={props.taskData}/>
     </Container>
+    </>
   );
 }

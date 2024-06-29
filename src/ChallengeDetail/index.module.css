@@ -1,0 +1,14 @@
+.contain {
+    min-height: 100vh;
+    background-color: #E6FBB0;
+    padding-bottom: 200px;
+    .title {
+        color: #3B3B3B;
+        font-size: 28px;
+        padding: 14px;
+        font-weight: 700;
+    }
+    .lists {
+        padding: 0 10px;
+    }
+}

@@ -8,9 +8,9 @@ import Footer from "./Components/Footer"
 import Media from "./Media"
 import Challenge from "./Challenge"
 import Welcome from "./Welcome"
-import Bar from "./Components/Bar"
 import { Box } from "@mui/material";
 import Home from "./Home"
+import ChallengeDetail from "./ChallengeDetail";
 
 function App() {
   let ifLogin = false
@@ -88,6 +88,7 @@ function App() {
   if (ifLogin) {
     return <Login></Login>
   }
+<<<<<<< HEAD
   else{
     return (
       <div className="App">
@@ -105,13 +106,31 @@ function App() {
       </div>
     )
 };
+=======
+  else return (
+    <div className="App">
+
+          <Routes>
+              <Route path="start" element={<StartPage />} />
+              <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="media" element={<Media />} />
+              <Route path="challenge" element={<Challenge />} />
+              <Route path="login" element={<Login />} />
+              <Route path="Welcome" element={<Welcome />} />
+              <Route path="*" element={<NoMatch />} />
+              <Route path="challengeDetail" element={<ChallengeDetail />} />
+            </Route>
+          </Routes> 
+    </div>
+  );
+>>>>>>> 30bc44a4db5aa4de0cbef4508c2696aa0776300a
 }
 
 
 function Layout() {
   return (
     <Box>
-      <Bar />
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       {/* <nav>
