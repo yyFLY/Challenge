@@ -11,7 +11,7 @@ import ChallengerList from '../Components/ChallengerList';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Padding } from '@mui/icons-material';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -25,34 +25,32 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-const BackgroundBox = styled(Box)(({ theme }) => ({
+const BackgroundBox = styled(Box)(({ theme,imageUrl  }) => ({
   width: '100%',
   height: '240px',
-  backgroundImage: `url({http://127.0.0.1:8080/api/resource/${Box}})`,
+  backgroundImage: `url(http://127.0.0.1:8080/api/resource/${imageUrl})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   borderRadius:'14px'
 }));
 
 export default function ChallengeDetail(props) {
-  const location = useLocation()
-  const taskId = location.taskId
+  const {taskId} = useParams()
   useEffect(()=>{
     props.fetchTaskDetail(taskId)
     props.fetchTaskParticipants(taskId)
   }, [])
-  console.log("taskDetail", props.taskDetail);
-  // 
-  // taskParticipants
+  if (!props?.taskDetail) return <></>
   const card_num = [1,2,3,4,5,6]
+
   return (
     <Box className={styles.contain}>
-        <BackgroundBox data={props?.taskDetail?.photo}/>
-        <Box className={styles.title}>{props?.taskDetail?.taskName}</Box>
+        <BackgroundBox imageUrl={props?.taskDetail?.taskId?.photo}/>
+        <Box className={styles.title}>{props?.taskDetail?.taskId?.taskName}</Box>
         <Box className={styles.lists}>
-          <ProgressCard></ProgressCard>
-          <ChallengeDetailCard></ChallengeDetailCard>
-          <ChallengerList></ChallengerList>
+          <ProgressCard data={props?.taskDetail}></ProgressCard>
+          <ChallengeDetailCard data={props?.taskDetail}></ChallengeDetailCard>
+          <ChallengerList data={props?.taskParticipants}></ChallengerList>
         </Box>
         <Button
         style={{marginTop:40, with:'100%'}}

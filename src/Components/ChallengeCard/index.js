@@ -34,7 +34,7 @@ export default function Challenge(props) {
   const navigation=useNavigate()
   
   const clickNav = (e)=>{
-    navigation('/challengeDetail', {taskId:props?.data?._id});
+    navigation(`/challengeDetail/${props?.data?._id}`);
   }
   return (
     <Box onClick={clickNav} className={props.styles === '2' ? styles.challenge_container2 :styles.challenge_container }>

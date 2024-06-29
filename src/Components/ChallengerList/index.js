@@ -20,7 +20,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const UserItem = () => {
+const UserItem = (prop) => {
   return(
     <div  className={styles.inner_container}>
     <div  className={styles.box_container}>
@@ -49,12 +49,14 @@ const UserItem = () => {
 }
 
 export default function ChallengeDetailCard(props) {
+
   return (
     <Box className={styles.challengerList_container}>
       <Box className={styles.title}>Challenge Details</Box>
       <div  className={styles.box_container}>
-        <UserItem />
-        <UserItem />
+      {
+        props?.data?.map((o)=>(<UserItem data={o}/>))
+      }
       </div>
     </Box>
   );

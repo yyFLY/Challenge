@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useNavigate} from "react-router-dom"
+import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -41,16 +43,25 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
+export default function SignIn(props) {
+  const navigation = useNavigate()
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-
     
+    try {
+      const response = await axios.post('http://127.0.0.1:8080/api/auth/signin', {
+        userName: data.get('email'),
+        password: data.get('password')
+      })
+      if (response.status === 200){ 
+        props.setUserId(data.get('email'))
+        console.log("Login successfully! ", data.get('email'));
+        navigation('/') 
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
