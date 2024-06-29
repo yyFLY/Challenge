@@ -89,6 +89,9 @@ function App() {
   const [userTasks, setUserTasks] = useState(null);
   const [userTaskProgress, setUserTaskProgress] = useState(null);
 
+  if (ifLogin) {
+    return <Login></Login>
+  }
   const processTaskDate = (o)=>{
     o.startDate = new Date(o.startDate)
     o.endDate = new Date(o.endDate)
@@ -155,26 +158,22 @@ function App() {
   };
    
    
-  if (ifLogin) {
-    return <Login></Login>
-  }
-  else{
-    return (
-      <div className="App">
-            <Routes>
-                <Route path="start" element={<StartPage />} />
-                <Route path="/" element={<Layout />}>
-                <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
-                <Route path="media" element={<Media />} />
-                <Route path="challenge" element={<Challenge />} />
-                <Route path="login" element={<Login />} />
-                <Route path="Welcome" element={<Welcome />} />
-                <Route path="*" element={<NoMatch />} />
-              </Route>
-            </Routes> 
-      </div>
-    )
-};
+
+  return (
+    <div className="App">
+          <Routes>
+              <Route path="start" element={<StartPage />} />
+              <Route path="login" element={<Login />} />
+              <Route path="Welcome" element={<Welcome />} />
+              <Route path="/" element={<Layout />}>
+              <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
+              <Route path="media" element={<Media />} />
+              <Route path="challenge" element={<Challenge />} />
+              <Route path="*" element={<NoMatch />} />
+            </Route>
+          </Routes> 
+    </div>
+  )
 }
 
   
