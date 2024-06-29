@@ -22,7 +22,7 @@ export default function SimpleBottomNavigation() {
             onChange={(event, newValue) => {
                 setValue(newValue);
                 if (newValue == 0) {
-                  navigation('/');
+                  navigation('/home');
                 }
                 else if (newValue == 1) {
                   navigation('/challenge');
