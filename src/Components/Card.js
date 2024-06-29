@@ -27,7 +27,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
+  console.log(props.data)
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
