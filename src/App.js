@@ -73,7 +73,7 @@ function App() {
         const userTask = response.data.joinData.find(o => o.userId._id==userId)
         const userData = response.data.userData
         const data = {
-            userData: userData
+            userData: userData,
             taskInfo: taskInfo,
             userTask: userTask,
             joinData: joinData
@@ -88,25 +88,6 @@ function App() {
   if (ifLogin) {
     return <Login></Login>
   }
-<<<<<<< HEAD
-  else{
-    return (
-      <div className="App">
-            <Routes>
-                <Route path="start" element={<StartPage />} />
-                <Route path="/" element={<Layout />}>
-                <Route index element={<Home  taskData={taskData} fetchAllTask={fetchAllTask} userData={userData} fetchUserTask={fetchUserTask}/>} />
-                <Route path="media" element={<Media userData={userData} fetchUserTask={fetchUserTask}/>} />
-                <Route path="challenge" element={<Challenge />} />
-                <Route path="login" element={<Login />} />
-                <Route path="Welcome" element={<Welcome />} />
-                <Route path="*" element={<NoMatch />} />
-              </Route>
-            </Routes> 
-      </div>
-    )
-};
-=======
   else return (
     <div className="App">
 
@@ -124,7 +105,6 @@ function App() {
           </Routes> 
     </div>
   );
->>>>>>> 30bc44a4db5aa4de0cbef4508c2696aa0776300a
 }
 
 
@@ -133,28 +113,7 @@ function Layout() {
     <Box>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/start">start</Link>
-          </li>
-          <li>
-            <Link to="/media">Media</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <hr /> */}
-
+      {/*
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
