@@ -21,7 +21,7 @@ export default function SimpleBottomNavigation(props) {
     <Bar></Bar>
     <Container className={styles.contain}>
       <Box className={styles.title}>Challenge Progress</Box>
-      {userTasks.map((o)=>(<ProgressCard data={o}/>))}
+      {userTasks.map((o,index)=>(<div style={{paddingBottom: '5'}}key={index}><ProgressCard data={o}/></div>))}
       <Achieve data={props.userTasks}/>
       <Code data={props.userDetail}/>
       <Challenge data={props.taskList}/>
