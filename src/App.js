@@ -5,17 +5,16 @@ import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Login from "./Login";
 import Start from "./Welcome";
-import Footer from "./Components/Footer"
 import Media from "./Media"
 import Challenge from "./Challenge"
 import Welcome from "./Welcome"
 import { Box } from "@mui/material";
 import Home from "./Home"
 import ChallengeDetail from "./ChallengeDetail";
+import Footer from "./Components/Footer"
 
 
 function App() {
-  let ifLogin = false
   const [taskList, setTaskList] = useState(null);
   const [taskDetail, setTaskDetail] = useState(null);
   const [taskParticipants, setTaskParticipants] = useState(null);
@@ -23,6 +22,8 @@ function App() {
   const [userTasks, setUserTasks] = useState(null);
   const [userTaskProgress, setUserTaskProgress] = useState(null);
   console.log("cookie:", Cookies.get('userId'));
+
+  const [ifLogin, setIfLogin] = useState(false);
   // if (Cookies.get('userId')) {
   //   return (<Login/>)
   // }
@@ -74,6 +75,7 @@ function App() {
   };
   const fetchUserTask = async () => {
     const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
+    userId && setIfLogin(true)
     try {
         const response = await axios.get(`http://13.55.193.64:8080/api/user/${userId}/tasks`);
         response.data = response.data.map( (o)=>{
@@ -100,14 +102,13 @@ function App() {
     return (
       <div className="App">
             <Routes>
-                <Route path="login" element={<Login/>} />
-                <Route path="start" element={<StartPage />} />
-                <Route path="/" element={<Layout />}>
-                <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
+                <Route path="/" element={<Layout ifLogin={ifLogin}/>}>
+                <Route index element={<Login />} />
                 <Route path="media" element={<Media />} />
                 <Route path="challenge" element={<Challenge taskList={taskList} />} />
                 <Route path="challengeDetail/:taskId" element={<ChallengeDetail taskDetail={taskDetail} fetchTaskDetail={fetchTaskDetail} taskParticipants={taskParticipants} fetchTaskParticipants={fetchTaskParticipants}/>} />
                 <Route path="Welcome" element={<Welcome />} />
+                <Route path="home" element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
                 <Route path="*" element={<NoMatch />} />
               </Route>
             </Routes> 
@@ -118,7 +119,8 @@ function App() {
 
   
 
-function Layout() {
+function Layout(data) {
+  const ifLogin = data?.ifLogin
   return (
     <Box>
       {/* A "layout route" is a good place to put markup you want to
@@ -128,7 +130,8 @@ function Layout() {
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
       <Outlet/>
-      <Footer />
+      {ifLogin}
+      {ifLogin && <Footer />}
     </Box>
   );
 }

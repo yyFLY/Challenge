@@ -47,7 +47,7 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function SignIn(props) {
+export default function Login(props) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
