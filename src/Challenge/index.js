@@ -7,7 +7,6 @@ import { styled } from '@mui/system';
 
 export default function Challenge(props) {
   const taskList = props?.taskList || []
-  console.log(taskList);
   return (
     <Container className={styles.contain}>
       <Box className={styles.title}>All Challenges</Box>

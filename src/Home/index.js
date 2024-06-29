@@ -15,7 +15,6 @@ export default function SimpleBottomNavigation(props) {
     props.fetchUserTask()
   }, [])
   const userTasks = props?.userTasks?.slice(0, 3) || []
-  console.log("QQ", userTasks);
   return (
     <>
     <Bar></Bar>

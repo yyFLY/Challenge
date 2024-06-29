@@ -24,7 +24,7 @@ export default function ProgressCard(props) {
   if(!props.data) return <></>
   const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.taskId.photo}`
   const progress = props.data?.photos?.length || 0
-  console.log(props);
+
   return (
     <Box className={styles.progress_container}>
       <div  className={styles.box_container}>

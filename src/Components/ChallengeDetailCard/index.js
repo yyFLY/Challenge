@@ -22,7 +22,6 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function ChallengeDetailCard(props) {
-  console.log("props", props);
   return (
     <Box className={styles.progress_container}>
       <Box className={styles.title}>Challenge Details</Box>

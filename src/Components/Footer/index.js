@@ -21,7 +21,6 @@ export default function SimpleBottomNavigation() {
             value={value}
             onChange={(event, newValue) => {
                 setValue(newValue);
-                console.log(newValue)
                 if (newValue == 0) {
                   navigation('/');
                 }

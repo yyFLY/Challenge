@@ -1,4 +1,5 @@
 import "./App.css";
+import Cookies from 'js-cookie';
 import axios from 'axios';
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -12,19 +13,19 @@ import { Box } from "@mui/material";
 import Home from "./Home"
 import ChallengeDetail from "./ChallengeDetail";
 
+
 function App() {
   let ifLogin = false
-  const [userId, setUserId]= useState(null);
   const [taskList, setTaskList] = useState(null);
   const [taskDetail, setTaskDetail] = useState(null);
   const [taskParticipants, setTaskParticipants] = useState(null);
   const [userDetail, setUserDetail] = useState(null);
   const [userTasks, setUserTasks] = useState(null);
   const [userTaskProgress, setUserTaskProgress] = useState(null);
-
-  if (ifLogin) {
-    return <Login></Login>
-  }
+  console.log("cookie:", Cookies.get('userId'));
+  // if (Cookies.get('userId')) {
+  //   return (<Login/>)
+  // }
   const processTaskDate = (o)=>{
     o.startDate = new Date(o.startDate)
     o.endDate = new Date(o.endDate)
@@ -63,7 +64,7 @@ function App() {
     }
   };
   const fetchUserDetail = async () => {
-    const userId = "667f7b9bc3a705d90fd19733"
+    const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
         const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/details`);
         setUserDetail(response.data)
@@ -72,7 +73,7 @@ function App() {
     }
   };
   const fetchUserTask = async () => {
-    const userId = "667f7b9bc3a705d90fd19733"
+    const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
         const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/tasks`);
         response.data = response.data.map( (o)=>{
@@ -84,9 +85,9 @@ function App() {
       console.log(error);
     }
   };
-  const fetchUserTaskProgress = async () => {
-    const taskId = "667f7db5997a28d63916246a"
-    const userId = "667f7b9bc3a705d90fd19733"
+  const fetchUserTaskProgress = async (taskId) => {
+    taskId = taskId || "667f7db5997a28d63916246a"
+    const userId = Cookies.get('userId') || "667f7b9bc3a705d90fd19733"
     try {
         const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/progress?taskId=${taskId}`);
         response.data.taskId = processTaskDate(response.data.taskId)
@@ -95,19 +96,17 @@ function App() {
       console.log(error);
     }
   };
-   
+
     return (
       <div className="App">
-        
             <Routes>
-                <Route path="login" element={<Login setUserId={setUserId}/>} />
+                <Route path="login" element={<Login/>} />
                 <Route path="start" element={<StartPage />} />
                 <Route path="/" element={<Layout />}>
                 <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
                 <Route path="media" element={<Media />} />
                 <Route path="challenge" element={<Challenge taskList={taskList} />} />
                 <Route path="challengeDetail/:taskId" element={<ChallengeDetail taskDetail={taskDetail} fetchTaskDetail={fetchTaskDetail} taskParticipants={taskParticipants} fetchTaskParticipants={fetchTaskParticipants}/>} />
-                
                 <Route path="Welcome" element={<Welcome />} />
                 <Route path="*" element={<NoMatch />} />
               </Route>

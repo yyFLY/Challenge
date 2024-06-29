@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
+import Cookies from 'js-cookie';
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -71,8 +72,8 @@ export default function SignIn(props) {
         password: data.get('password')
       })
       if (response.status === 200){ 
-        props.setUserId(data.get('email'))
-        console.log("Login successfully! ", data.get('email'));
+        Cookies.set('userId', response.data.user._id, { expires: 7 }); // cookie 7 天后过期
+        console.log("Login successfully! ", response);
         navigation('/') 
       }
       else {
