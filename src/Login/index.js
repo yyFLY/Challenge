@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar';
@@ -16,6 +17,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import purple from '@mui/material/colors/purple';
 import green from '@mui/material/colors/green';
+
+import { Snackbar, Alert } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -44,6 +47,19 @@ const defaultTheme = createTheme({
 });
 
 export default function SignIn(props) {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   const navigation = useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,7 +75,11 @@ export default function SignIn(props) {
         console.log("Login successfully! ", data.get('email'));
         navigation('/') 
       }
+      else {
+        handleClick()
+      }
     } catch (error) {
+      handleClick()
       console.error('Error:', error);
     }
   };
@@ -67,6 +87,11 @@ export default function SignIn(props) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+      <Snackbar style={{top:10,bottom:'auto'}} open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Your password is wrong !
+        </Alert>
+      </Snackbar>
         <CssBaseline />
         <Box
           sx={{
@@ -126,6 +151,7 @@ export default function SignIn(props) {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+  
     </ThemeProvider>
   );
 }
