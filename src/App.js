@@ -2,10 +2,13 @@ import "./App.css";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Login from "./Login";
 import Start from "./Welcome";
-import Footer from "./Footer"
+import Footer from "./Components/Footer"
 import Media from "./Media"
 import Challenge from "./Challenge"
 import Welcome from "./Welcome"
+import Bar from "./Components/Bar"
+import { Box } from "@mui/material";
+import Home from "./Home"
 
 
 function App() {
@@ -34,7 +37,8 @@ function App() {
 
 function Layout() {
   return (
-    <div>
+    <Box>
+      <Bar />
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       {/* <nav>
@@ -62,19 +66,12 @@ function Layout() {
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
-      <Outlet />
+      <Outlet/>
       <Footer />
-    </div>
+    </Box>
   );
 }
 
-function Home() {
-  return (
-    <div>
-      <h2>Home kk</h2>
-    </div>
-  );
-}
 
 function About() {
   return (

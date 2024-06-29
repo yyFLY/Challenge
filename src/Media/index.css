@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-items: center;
     align-items: center;
+    padding-top: 90px;
 }
 .item {
     padding-bottom: 20px;

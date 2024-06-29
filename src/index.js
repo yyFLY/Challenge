@@ -4,15 +4,36 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import green from '@mui/material/colors/green';
+
+
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: green[500],
+    },
+    secondary: {
+      main:"#3B3B3B"
+    }
+  
+  },
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
+
+    <ThemeProvider theme={defaultTheme}>
       <div>
         {/* <BrowserRouter> */}
           <App />
         {/* </BrowserRouter> */}
         </div>
+        </ThemeProvider>
     </Router>
   </React.StrictMode>
 );
