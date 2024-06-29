@@ -1,3 +1,70 @@
+.challenge_container2 {
+    background: #9FBC5A;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    padding: 14px 10px;
+    .box_container {
+        display: flex;
+        flex-direction: row;
+        border-radius: 12px;
+        align-items: center;
+    }
+    .fixed {
+        width: 130px; /* 固定宽度 */
+        height: 80px;
+        background-color: #fff;
+        margin-right: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+
+    }
+    .flex-grow {
+        flex-grow: 1; /* 右边撑满 */
+
+     
+    }
+    .inner_container {
+        .t1 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 15px;
+            padding-bottom: 5px;
+            text-align: left;
+            color: #FFFFFF;
+        }
+        .t2 {
+            font-size: 11px;
+            line-height: 13px;
+            color: #FFFFFF;
+            padding-bottom: 5px;
+            text-align: left;
+
+        }
+        .t3 {
+            font-size: 11px;
+            line-height: 13px;
+            color: #FFFFFF;
+            padding-bottom: 5px;
+            text-align: left;
+
+        }
+        .img_container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+
+        }
+
+    }
+    .joined {
+        font-size: 11px;
+        text-align: left;
+        color: #5F5F5F;
+        padding-top: 5px;
+
+    }
+}
 .challenge_container {
     background: #F8FCF3;
     padding: 0 10px;

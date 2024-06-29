@@ -7,7 +7,7 @@ import girl from "../../Static/img/girl.png";
 
 export default function Challenge(props) {
   return (
-    <Box className={styles.challenge_container}>
+    <Box className={props.styles === '2' ? styles.challenge_container2 :styles.challenge_container}>
       <div className={styles.box_container}>
         <div className={styles.fixed}>
           <Image src={girl} alt="" width={130} height={80}></Image>
