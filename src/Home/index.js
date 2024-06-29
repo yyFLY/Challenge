@@ -9,20 +9,22 @@ import Code from '../Components/Code';
 import Bar from '../Components/Bar'
 
 export default function SimpleBottomNavigation(props) {
-  useEffect(()=> {
-    props.fetchAllTask()
+  useEffect(()=>{
+    props.fetchTaskList()
+    props.fetchUserDetail()
     props.fetchUserTask()
   }, [])
-
+  const userTasks = props?.userTasks || []
+  console.log("QQ", userTasks);
   return (
     <>
     <Bar></Bar>
     <Container className={styles.contain}>
       <Box className={styles.title}>Challenge Progress</Box>
-      <ProgressCard />
+      {userTasks.map((o)=>(<ProgressCard data={o}/>))}
       <Achieve />
-      <Code userData={props.userData}/>
-      <Challenge taskData={props.taskData}/>
+      <Code data={props.userDetail}/>
+      <Challenge data={props.taskList}/>
     </Container>
     </>
   );

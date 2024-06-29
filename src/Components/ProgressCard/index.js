@@ -28,7 +28,7 @@ export default function ProgressCard(props) {
           <Image src={girl} alt="" width={40} height={40}></Image>
         </div>
         <div  className={styles.inner_container}>
-            <div className={styles.t1}>Collecting Diverse Plants</div>
+            <div className={styles.t1}>{props.data.taskId.taskName}</div>
             <div className={styles.t2}>Deluxe Plant Care Kit</div>
             <Stack
               direction="row"

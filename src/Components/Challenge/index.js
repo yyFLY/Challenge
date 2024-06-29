@@ -4,8 +4,7 @@ import { Container, Box, Stack } from "@mui/material";
 import ChallengeCard from '../ChallengeCard'
 
 export default function Challenge(props) {
-  const taskData = props?.taskData || []
-  console.log("taskData:", taskData);
+  const data = props.data || []
   return (
     <Box className={styles.achieve_container}>
       <Box className={styles.title}>Challenges</Box>
@@ -13,7 +12,7 @@ export default function Challenge(props) {
         <div className={styles.t1}>Invite your friends</div>
         <div className={styles.t2}>Explore the fun challenge with your friend and get rewarded</div>
         {
-          taskData.map((data, index) =>(<ChallengeCard data={data} key={index}/>))
+          data.map((o,index) =>(<ChallengeCard data={o} key={index}/>))
         }
       </Box>
       </Box>

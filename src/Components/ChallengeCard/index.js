@@ -4,7 +4,7 @@ import styles from './index.module.css';
 import { Image } from "mui-image";
 import girl from "../../Static/img/girl.png";
 
-function formatDate(d){
+function formatDate(d){ 
   const formattedDate = d.toLocaleDateString(
     'en-US', 
     { month: 'short', day: 'numeric' }
@@ -26,7 +26,6 @@ function randomUserPhotos(){
 export default function Challenge(props) {
   const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.photo}`
   const duration = `${formatDate(props.data.startDate)} - ${formatDate(props.data.endDate)}`
-  console.log();
   return (
     <Box className={props.styles === '2' ? styles.challenge_container2 :styles.challenge_container}>
       <div className={styles.box_container}>

@@ -11,23 +11,17 @@ import Welcome from "./Welcome"
 import { Box } from "@mui/material";
 import Home from "./Home"
 import ChallengeDetail from "./ChallengeDetail";
+  /**
+  /api/task/tasklist
+  /api/task/:taskId/details
+  /api/task/:taskId/participants
+  /api/user/:userId/details
+  /api/user/:userId/tasks
+  /api/user/:userId/progress?taskId=xxx
 
-function App() {
-  let ifLogin = false
-  const [userData, setUserData] = useState(null);
-  const [taskList, setTaskList] = useState(null);
-  const [taskDetail, setTaskDetail] = useState(null);
-  const [taskParticipants, setTaskParticipants] = useState(null);
+
   
-  const fetchUserData = async () => {
-    const userId = "667f7b9bc3a705d90fd19733"
-    try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}`);
-        setUserData(response.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
   const fetchAllTask = async () => {
     try {
         const response = await axios.get('http://127.0.0.1:8080/api/task/all');
@@ -84,19 +78,94 @@ function App() {
       console.log(error);
     }
   };
+  */
 
+function App() {
+  let ifLogin = false
+  const [taskList, setTaskList] = useState(null);
+  const [taskDetail, setTaskDetail] = useState(null);
+  const [taskParticipants, setTaskParticipants] = useState(null);
+  const [userDetail, setUserDetail] = useState(null);
+  const [userTasks, setUserTasks] = useState(null);
+  const [userTaskProgress, setUserTaskProgress] = useState(null);
+
+  const processTaskDate = (o)=>{
+    o.startDate = new Date(o.startDate)
+    o.endDate = new Date(o.endDate)
+    o.leftDays = Math.floor((o.endDate-Date.now()) / (1000 * 60 * 60 * 24))
+    return o
+  }
+
+  const fetchTaskList = async () => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/task/tasklist`);
+        response.data = response.data.map(o=>processTaskDate(o))
+        setTaskList(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchTaskDetail = async () => {
+    const taskId = "667f7db5997a28d63916246a"
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/details}`);
+        response.data = processTaskDate(response.data)
+        setTaskDetail(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchTaskParticipants = async () => {
+    const taskId = "667f7db5997a28d63916246a"
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/participants}`);
+        setTaskParticipants(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchUserDetail = async () => {
+    const userId = "667f7b9bc3a705d90fd19733"
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/details`);
+        setUserDetail(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchUserTask = async () => {
+    const userId = "667f7b9bc3a705d90fd19733"
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/tasks`);
+        setUserTasks(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchUserTaskProgress = async () => {
+    const taskId = "667f7db5997a28d63916246a"
+    const userId = "667f7b9bc3a705d90fd19733"
+    try {
+        const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/progress?taskId=${taskId}`);
+        response.data.taskId = processTaskDate(response.data.taskId)
+        setUserTaskProgress(response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+   
+   
   if (ifLogin) {
     return <Login></Login>
   }
-<<<<<<< HEAD
   else{
     return (
       <div className="App">
             <Routes>
                 <Route path="start" element={<StartPage />} />
                 <Route path="/" element={<Layout />}>
-                <Route index element={<Home  taskData={taskData} fetchAllTask={fetchAllTask} userData={userData} fetchUserTask={fetchUserTask}/>} />
-                <Route path="media" element={<Media userData={userData} fetchUserTask={fetchUserTask}/>} />
+                <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
+                <Route path="media" element={<Media />} />
                 <Route path="challenge" element={<Challenge />} />
                 <Route path="login" element={<Login />} />
                 <Route path="Welcome" element={<Welcome />} />
@@ -106,27 +175,9 @@ function App() {
       </div>
     )
 };
-=======
-  else return (
-    <div className="App">
-
-          <Routes>
-              <Route path="start" element={<StartPage />} />
-              <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="media" element={<Media />} />
-              <Route path="challenge" element={<Challenge />} />
-              <Route path="login" element={<Login />} />
-              <Route path="Welcome" element={<Welcome />} />
-              <Route path="*" element={<NoMatch />} />
-              <Route path="challengeDetail" element={<ChallengeDetail />} />
-            </Route>
-          </Routes> 
-    </div>
-  );
->>>>>>> 30bc44a4db5aa4de0cbef4508c2696aa0776300a
 }
 
+  
 
 function Layout() {
   return (

@@ -15,8 +15,7 @@ const BackgroundBox = styled(Box)(({ theme }) => ({
 }));
 
 export default function Code(props) {
-  console.log(props);
-  const amount = props.userData.amount || 0.0
+  const amount = props.data?.amount || 0
   return (<BackgroundBox>
     <div className={styles.t1}>
       <div className={styles.t2}>amount</div>
