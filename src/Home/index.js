@@ -14,7 +14,7 @@ export default function SimpleBottomNavigation(props) {
     props.fetchUserDetail()
     props.fetchUserTask()
   }, [])
-  const userTasks = props?.userTasks || []
+  const userTasks = props?.userTasks?.slice(0, 3) || []
   console.log("QQ", userTasks);
   return (
     <>
@@ -22,7 +22,7 @@ export default function SimpleBottomNavigation(props) {
     <Container className={styles.contain}>
       <Box className={styles.title}>Challenge Progress</Box>
       {userTasks.map((o)=>(<ProgressCard data={o}/>))}
-      <Achieve />
+      <Achieve data={props.userTasks}/>
       <Code data={props.userDetail}/>
       <Challenge data={props.taskList}/>
     </Container>

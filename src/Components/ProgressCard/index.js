@@ -21,11 +21,14 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function ProgressCard(props) {
+  if(!props.data) return <></>
+  const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.taskId.photo}`
+  console.log(props);
   return (
     <Box className={styles.progress_container}>
       <div  className={styles.box_container}>
         <div  className={styles.fixed}>
-          <Image src={girl} alt="" width={40} height={40}></Image>
+          <Image src={photoURL} alt="" width={40} height={40} borderRadius="100%"></Image>
         </div>
         <div  className={styles.inner_container}>
             <div className={styles.t1}>{props.data.taskId.taskName}</div>
@@ -35,13 +38,13 @@ export default function ProgressCard(props) {
               justifyContent="space-between"
               alignItems="flex-start"
             >
-              <div className={styles.t3}>17 / 50 images</div>
-              <div className={styles.t3}>182 days left</div>
+              <div className={styles.t3}>{props.data.photos.length} / {props.data.taskId.threshold} images</div>
+              <div className={styles.t3}>{props.data.taskId.leftDays} days left</div>
             </Stack>
 
             <BorderLinearProgress
               variant="determinate"
-              value={50}
+              value={100*props.data.photos.length / props.data.taskId.threshold}
               width=" 100%"
             />
         </div>

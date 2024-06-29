@@ -3,6 +3,9 @@ import { Container, Box, Stack } from "@mui/material";
 import styles from './index.module.css';
 import { Image } from "mui-image";
 import girl from "../../Static/img/girl.png";
+import {Link,useNavigate} from "react-router-dom"
+
+
 
 function formatDate(d){ 
   const formattedDate = d.toLocaleDateString(
@@ -15,7 +18,7 @@ function formatDate(d){
 function randomUserPhotos(){
   const rtv = []
   const filenames = ["avatar_f1.png", "avatar_f2.png", "avatar_f3.png", "avatar_m1.png", "avatar_m2.png"]
-  for (let i = 0; i < filenames.length; i++) {
+  for (let i = 0; i < filenames?.length; i++) {
     if(Math.random() > 0.5){
       rtv.push(`http://127.0.0.1:8080/api/resource/${filenames[i]}`)
     }
@@ -23,11 +26,18 @@ function randomUserPhotos(){
   return rtv
 }
 
+
 export default function Challenge(props) {
   const photoURL = `http://127.0.0.1:8080/api/resource/${props.data.photo}`
   const duration = `${formatDate(props.data.startDate)} - ${formatDate(props.data.endDate)}`
+
+  const navigation=useNavigate()
+  
+  const clickNav = (e)=>{
+    navigation('/challengeDetail', {taskId:props?.data?._id});
+  }
   return (
-    <Box className={props.styles === '2' ? styles.challenge_container2 :styles.challenge_container}>
+    <Box onClick={clickNav} className={props.styles === '2' ? styles.challenge_container2 :styles.challenge_container }>
       <div className={styles.box_container}>
         <div className={styles.fixed}>
           <Image src={photoURL} alt="" width={130} height={80}></Image>

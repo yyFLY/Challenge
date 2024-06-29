@@ -8,7 +8,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Paper from '@mui/material/Paper';
 import {Link,useNavigate} from "react-router-dom"
 
-
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 

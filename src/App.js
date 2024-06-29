@@ -11,6 +11,7 @@ import Welcome from "./Welcome"
 import { Box } from "@mui/material";
 import Home from "./Home"
 import ChallengeDetail from "./ChallengeDetail";
+
   /**
   /api/task/tasklist
   /api/task/:taskId/details
@@ -88,7 +89,7 @@ function App() {
   const [userDetail, setUserDetail] = useState(null);
   const [userTasks, setUserTasks] = useState(null);
   const [userTaskProgress, setUserTaskProgress] = useState(null);
-
+  
   const processTaskDate = (o)=>{
     o.startDate = new Date(o.startDate)
     o.endDate = new Date(o.endDate)
@@ -105,20 +106,20 @@ function App() {
       console.log(error);
     }
   };
-  const fetchTaskDetail = async () => {
-    const taskId = "667f7db5997a28d63916246a"
+  const fetchTaskDetail = async (taskId) => {
+    taskId = taskId || "667f7db5997a28d63916246a"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/details}`);
+        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/details`);
         response.data = processTaskDate(response.data)
         setTaskDetail(response.data)
     } catch (error) {
       console.log(error);
     }
   };
-  const fetchTaskParticipants = async () => {
-    const taskId = "667f7db5997a28d63916246a"
+  const fetchTaskParticipants = async (taskId) => {
+    taskId = taskId || "667f7db5997a28d63916246a"
     try {
-        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/participants}`);
+        const response = await axios.get(`http://127.0.0.1:8080/api/task/${taskId}/participants`);
         setTaskParticipants(response.data)
     } catch (error) {
       console.log(error);
@@ -137,6 +138,10 @@ function App() {
     const userId = "667f7b9bc3a705d90fd19733"
     try {
         const response = await axios.get(`http://127.0.0.1:8080/api/user/${userId}/tasks`);
+        response.data = response.data.map( (o)=>{
+          o.taskId = processTaskDate(o.taskId)
+          return o
+        })
         setUserTasks(response.data)
     } catch (error) {
       console.log(error);
@@ -166,7 +171,8 @@ function App() {
                 <Route path="/" element={<Layout />}>
                 <Route index element={<Home userDetail={userDetail} taskList={taskList} userTasks={userTasks} fetchTaskList={fetchTaskList} fetchUserDetail={fetchUserDetail} fetchUserTask={fetchUserTask}/>} />
                 <Route path="media" element={<Media />} />
-                <Route path="challenge" element={<Challenge />} />
+                <Route path="challenge" element={<Challenge taskList={taskList} />} />
+                <Route path="challengeDetail" element={<ChallengeDetail taskDetail={taskDetail} fetchTaskDetail={fetchTaskDetail} taskParticipants={taskParticipants} fetchTaskParticipants={fetchTaskParticipants}/>} />
                 <Route path="login" element={<Login />} />
                 <Route path="Welcome" element={<Welcome />} />
                 <Route path="*" element={<NoMatch />} />

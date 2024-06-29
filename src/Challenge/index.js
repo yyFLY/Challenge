@@ -5,13 +5,15 @@ import ChallengeCard from '../Components/ChallengeCard'
 import { styled } from '@mui/system';
 
 
-export default function Challenge() {
-  const card_num = [1,2,3,4,5,6]
+export default function Challenge(props) {
+  const taskList = props?.taskList || []
+  console.log(taskList);
   return (
     <Container className={styles.contain}>
       <Box className={styles.title}>All Challenges</Box>
-        <ChallengeCard styles="2" ></ChallengeCard>
-        <ChallengeCard styles="2" ></ChallengeCard>
+      {
+        taskList.map((o)=>(<ChallengeCard styles="2" data={o}></ChallengeCard>))
+      }
     </Container>
   )
 }
