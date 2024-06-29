@@ -1,0 +1,50 @@
+.progress_container {
+    background: #9FBC5A;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    margin-top: 20px;
+    .title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: left;
+        padding: 10px 0;
+    }
+
+
+    .box_container {
+        display: flex;
+        flex-direction: column;
+        background: #F8FCF3;
+        padding: 14px;
+        border-radius: 12px;
+    }
+    .inner_container {
+
+        border-bottom: 1px solid #C4C4C4;
+        width: 100%;
+        .t1 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 15px;
+            padding-bottom: 5px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            
+
+        }
+        .t2 {
+            padding-left: 10px;
+        }
+    }
+    .t3 {
+        font-size: 11px;
+        padding: 10px 0;
+        text-align: left;
+        color:#7C7C7C;
+    }
+}
+
+

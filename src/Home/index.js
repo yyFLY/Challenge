@@ -5,9 +5,12 @@ import ProgressCard from '../Components/ProgressCard';
 import Achieve from '../Components/Achieve';
 import Challenge from '../Components/Challenge';
 import Code from '../Components/Code';
+import Bar from '../Components/Bar'
 
 export default function SimpleBottomNavigation() {
   return (
+    <>
+    <Bar></Bar>
     <Container className={styles.contain}>
       <Box className={styles.title}>Challenge Progress</Box>
       <ProgressCard />
@@ -15,5 +18,6 @@ export default function SimpleBottomNavigation() {
       < Code />
       <Challenge />
     </Container>
+    </>
   );
 }
