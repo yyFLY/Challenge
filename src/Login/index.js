@@ -74,7 +74,7 @@ export default function Login(props) {
       if (response.status === 200){ 
         Cookies.set('userId', response.data.user._id, { expires: 7 }); // cookie 7 天后过期
         console.log("Login successfully! ", response);
-        navigation('/') 
+        navigation('/home') 
       }
       else {
         handleClick()
