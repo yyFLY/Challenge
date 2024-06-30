@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Padding } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
+import { Snackbar, Alert } from '@mui/material';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -28,13 +29,37 @@ const VisuallyHiddenInput = styled('input')({
 const BackgroundBox = styled(Box)(({ theme,imageUrl  }) => ({
   width: '100%',
   height: '240px',
-  backgroundImage: `url(http://13.55.193.64:8080/api/resource/${imageUrl})`,
+  backgroundImage: `url(http://127.0.0.1:8080/api/resource/${imageUrl})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   borderRadius:'14px'
 }));
 
+
 export default function ChallengeDetail(props) {
+  const [value, setValue] = useState('');
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const onChange = (e) => {
+    const value = e.target.value.length
+    if(value) {
+      setValue(value)
+      handleClick()
+
+    }
+    console.log(e)
+  }
+
   const {taskId} = useParams()
   useEffect(()=>{
     props.fetchTaskDetail(taskId)
@@ -45,6 +70,11 @@ export default function ChallengeDetail(props) {
 
   return (
     <Box className={styles.contain}>
+           <Snackbar style={{top:10,bottom:'auto'}} open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Your have selected {value} file(s) !
+            </Alert>
+          </Snackbar>
         <BackgroundBox imageUrl={props?.taskDetail?.taskId?.photo}/>
         <Box className={styles.title}>{props?.taskDetail?.taskId?.taskName}</Box>
         <Box className={styles.lists}>
@@ -63,7 +93,7 @@ export default function ChallengeDetail(props) {
           startIcon={<CloudUploadIcon />}
         >
           Upload file
-          <VisuallyHiddenInput type="file" />
+          <VisuallyHiddenInput type="file" onChange={onChange}/>
     </Button>
     </Box>
   )
